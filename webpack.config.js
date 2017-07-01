@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-var WebpackDevServer = require("webpack-dev-server");
+// var WebpackDevServer = require("webpack-dev-server");
 
 module.exports = {
     // __dirname 是nodejs里的一个全局变量，它指向的是我们项目的根目录

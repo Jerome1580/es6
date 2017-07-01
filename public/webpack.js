@@ -79,14 +79,15 @@ __webpack_require__(1);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(global) {
 
 /*var config = require("./config.json");
 
 document.write(config.text);
 */
 /*var sum = (a,b) => a+b;
-alert(sum(1,2))*/
+alert(sum(1,2))
+*/
 
 /**
  * 3块级作用域
@@ -132,11 +133,63 @@ fun();*/
 /**
  * 5冻结对象
  */
-var preson = Object.freeze({
-	name: "张三"
+/*const preson = Object.freeze({
+	name : "张三"
 });
 
-console.log(preson.name);
+console.log(preson.name) */
+
+/**
+ * 6函数声明
+ */
+
+/*function f() { console.log('I am outside!'); }
+
+(function () {
+  if (false) {
+    // 重复声明一次函数f
+    function b() { console.log('I am inside!'); }
+  }
+
+  b();
+}());*/
+
+/**
+ * 7全局对象属性
+ */
+
+var a = 1;
+console.log(window.a);
+console.log(global.a);
+console.log(undefined.a);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ })
 /******/ ]);

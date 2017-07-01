@@ -3,8 +3,8 @@
 document.write(config.text);
 */
 /*var sum = (a,b) => a+b;
-alert(sum(1,2))*/
-
+alert(sum(1,2))
+*/
 
 
 
@@ -53,8 +53,31 @@ fun();*/
 /**
  * 5冻结对象
  */
-const preson = Object.freeze({
+/*const preson = Object.freeze({
 	name : "张三"
 });
 
-console.log(preson.name) 
+console.log(preson.name) */
+
+/**
+ * 6函数声明
+ */
+
+/*function f() { console.log('I am outside!'); }
+
+(function () {
+  if (false) {
+    // 重复声明一次函数f
+    function b() { console.log('I am inside!'); }
+  }
+
+  b();
+}());*/
+
+/**
+ * 7全局对象属性
+ */
+
+let a = 1;
+console.log(window.a);
+
