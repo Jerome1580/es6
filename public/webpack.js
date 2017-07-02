@@ -71,6 +71,13 @@
 "use strict";
 
 
+// require('./1work.js')
+// require('./2jiegou.js')
+// require('./3RegExp-kuozhan.js')
+// require('./4String-kuozhan.js')
+// require('./5shuzhi-kuozhan.js')
+// require('./9Symbol.js')
+// require('./10数据结构.js')
 __webpack_require__(1);
 // require('./index.css')
 
@@ -79,117 +86,91 @@ __webpack_require__(1);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
 
-/*var config = require("./config.json");
 
-document.write(config.text);
-*/
-/*var sum = (a,b) => a+b;
-alert(sum(1,2))
-*/
+//  set---array   map--object
 
-/**
- * 3块级作用域
- */
+{
+    // 数据结构横向对比，增，删，查，改
+    var map = new Map();
+    var array = [];
 
-//3.1 变量不提升
-/*function fun(){
-	let num = 100;
-	if(true){
-		let num = 200;
-	}
-		console.log(num)
+    // 增
+    map.set('t', 1);
+    array.push({ 't': 1 });
+
+    console.info('map-array', map, array);
+
+    // 查
+
+    var map_exist = map.has('t');
+    var array_exist = array.find(function (item) {
+        return item.t;
+    });
+
+    console.info('map-array', map_exist, map_exist);
+
+    // 改
+    map.set('t', 2);
+    array.forEach(function (item) {
+        return item.t ? item = 2 : "";
+    });
+    console.info('map-array-modify', map, array);
+
+    //删除
+    map.delete('t');
+    var index = array.findIndex(function (item) {
+        return item.t;
+    }); //返回要删除的序号
+    array.splice(index, 1);
+    console.log('map-array-delete', map, array);
 }
 
-fun();*/
+// set -array
+{
+    var set = new Set();
+    var _array = [];
 
-// 3.2 函数不提升
-/*function fun(){
-		console.log("我在外面")
+    // 增
+    set.add({ 't': 1 });
+    _array.push({ 't': 1 });
+
+    // 查
+    var set_exsit = set.has({ 't': 1 }); //false ,因为has中是要传入引用地址，，如果吧{'t':1}保存变量，再给出这个变量的地址，has就能查到，这里仅说明，set查询用has方法
+
+    //改
+    set.forEach(function (item) {
+        return item.t ? item = 2 : "";
+    });
+    _array.forEach(function (item) {
+        return item.t ? item = 2 : "";
+    });
+
+    //删除
+    set.forEach(function (item) {
+        return item.t ? set.delete(item) : "";
+    });
 }
 
-(function(){
-	if(false){
-		function fun(){
-				console.log("我在里面")
-		}
-	}
+// object  map set
+{
+    var item = { 't': 1 };
+    var _map = new Map();
+    var _set = new Set();
+    var obj = {};
 
-	fun() //fun不是一个函数  fun是undefined
+    // 增
+    _map.set('t', 1);
+    _set.add(item);
+    obj['t'] = 1;
 
-}())*/
+    console.log('map-set-obj', _map, _set, obj);
 
-/**
- * 4暂时性死区
- */
-/*if(true){
-		console.log(Pi);
-		let Pi = 3.1415926;
-
+    //查
+    _map.has('t');
+    _set.has(item);
+    console.log('t' in obj);
 }
-*/
-
-/**
- * 5冻结对象
- */
-/*const preson = Object.freeze({
-	name : "张三"
-});
-
-console.log(preson.name) */
-
-/**
- * 6函数声明
- */
-
-/*function f() { console.log('I am outside!'); }
-
-(function () {
-  if (false) {
-    // 重复声明一次函数f
-    function b() { console.log('I am inside!'); }
-  }
-
-  b();
-}());*/
-
-/**
- * 7全局对象属性
- */
-
-var a = 1;
-console.log(window.a);
-console.log(global.a);
-console.log(undefined.a);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
 
 /***/ })
 /******/ ]);

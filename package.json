@@ -2,21 +2,13 @@
   "name": "xiangmu",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "index.js",
   "scripts": {
-    "start":"webpack",
+    "start": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jerome1580/webpack.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Jerome1580/webpack/issues"
-  },
-  "homepage": "https://github.com/Jerome1580/webpack#readme",
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.0",
