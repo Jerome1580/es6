@@ -170,7 +170,21 @@ __webpack_require__(1);
     _map.has('t');
     _set.has(item);
     console.log('t' in obj);
+
+    //改
+    _map.set('t', 2);
+    item.t = 2; //因为set存储的是引用地址，直接改引用的值，如果存的不是引用的地址，那就要用forEach
+    obj['t'] = 2;
+
+    //删除
+    _map.delete('t');
+    _set.delete(item);
+    delete obj['t'];
 }
+
+//以后做数据存储，优先考虑map set  如果强调数据唯一性用set  放弃object 和array
+//以后做数据存储，优先考虑map set  如果强调数据唯一性用set  放弃object 和array
+//以后做数据存储，优先考虑map set  如果强调数据唯一性用set  放弃object 和array
 
 /***/ })
 /******/ ]);
