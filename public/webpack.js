@@ -76,9 +76,12 @@
 // require('./3RegExp-kuozhan.js')
 // require('./4String-kuozhan.js')
 // require('./5shuzhi-kuozhan.js')
+// require('./6array-kuozhan.js')
+// require('./7function-kuozhan.js')
+__webpack_require__(1);
 // require('./9Symbol.js')
 // require('./10数据结构.js')
-__webpack_require__(1);
+// require('./11数据结构对比.js')
 // require('./index.css')
 
 /***/ }),
@@ -88,103 +91,126 @@ __webpack_require__(1);
 "use strict";
 
 
-//  set---array   map--object
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// 对象的扩展
 
 {
-    // 数据结构横向对比，增，删，查，改
-    var map = new Map();
-    var array = [];
+    // 简介表示法
 
-    // 增
-    map.set('t', 1);
-    array.push({ 't': 1 });
+    var o = 1;
+    var k = 2;
 
-    console.info('map-array', map, array);
+    var es5 = {
+        o: o,
+        k: k
+    };
 
-    // 查
+    var es6 = {
+        o: o,
+        k: k
+    };
 
-    var map_exist = map.has('t');
-    var array_exist = array.find(function (item) {
-        return item.t;
-    });
+    var es5_method = {
+        hello: function hello() {
+            console.log('hello');
+        }
+    };
 
-    console.info('map-array', map_exist, map_exist);
+    var es6_method = {
+        hello: function hello() {
+            console.log('hello');
+        },
+        world: function world() {
+            console.log('world');
+        }
+    };
 
-    // 改
-    map.set('t', 2);
-    array.forEach(function (item) {
-        return item.t ? item = 2 : "";
-    });
-    console.info('map-array-modify', map, array);
-
-    //删除
-    map.delete('t');
-    var index = array.findIndex(function (item) {
-        return item.t;
-    }); //返回要删除的序号
-    array.splice(index, 1);
-    console.log('map-array-delete', map, array);
+    console.log(es6_method.world());
 }
 
-// set -array
 {
-    var set = new Set();
-    var _array = [];
+    //属性表达式
+    var a = 'b';
+    var es5_obj = {
+        'a': 'c',
+        'b': 'c'
+    };
 
-    // 增
-    set.add({ 't': 1 });
-    _array.push({ 't': 1 });
+    var es6_obj = _defineProperty({}, a, 'c');
 
-    // 查
-    var set_exsit = set.has({ 't': 1 }); //false ,因为has中是要传入引用地址，，如果吧{'t':1}保存变量，再给出这个变量的地址，has就能查到，这里仅说明，set查询用has方法
-
-    //改
-    set.forEach(function (item) {
-        return item.t ? item = 2 : "";
-    });
-    _array.forEach(function (item) {
-        return item.t ? item = 2 : "";
-    });
-
-    //删除
-    set.forEach(function (item) {
-        return item.t ? set.delete(item) : "";
-    });
+    console.log(es5_obj, es6_obj);
 }
 
-// object  map set
 {
-    var item = { 't': 1 };
-    var _map = new Map();
-    var _set = new Set();
-    var obj = {};
+    // 新增api  Object.is  相当于 ===
+    console.log('字符串', Object.is('abc', 'abc'), 'abc' === 'abc');
+    console.log('数组', Object.is([], []));
 
-    // 增
-    _map.set('t', 1);
-    _set.add(item);
-    obj['t'] = 1;
+    // console.log('拷贝', Object.assgin({ a: 'a' }, { b: 'b' }))
+    // 将{b:'b'}拷贝到{a:'a'}  变成{a:'a',b:'b'}
+    // 浅拷贝
+    // 不拷贝继承的属性
 
-    console.log('map-set-obj', _map, _set, obj);
 
-    //查
-    _map.has('t');
-    _set.has(item);
-    console.log('t' in obj);
+    var test = { k: 123, o: 456 };
 
-    //改
-    _map.set('t', 2);
-    item.t = 2; //因为set存储的是引用地址，直接改引用的值，如果存的不是引用的地址，那就要用forEach
-    obj['t'] = 2;
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-    //删除
-    _map.delete('t');
-    _set.delete(item);
-    delete obj['t'];
+    try {
+        for (var _iterator = Object.entries(test)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var _step$value = _slicedToArray(_step.value, 2),
+                key = _step$value[0],
+                value = _step$value[1];
+
+            console.log(key, value);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+        for (var _iterator2 = test.entries()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var _step2$value = _slicedToArray(_step2.value, 2),
+                key = _step2$value[0],
+                value = _step2$value[1];
+
+            console.log(key, value);
+        }
+    } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+            }
+        } finally {
+            if (_didIteratorError2) {
+                throw _iteratorError2;
+            }
+        }
+    }
 }
-
-//以后做数据存储，优先考虑map set  如果强调数据唯一性用set  放弃object 和array
-//以后做数据存储，优先考虑map set  如果强调数据唯一性用set  放弃object 和array
-//以后做数据存储，优先考虑map set  如果强调数据唯一性用set  放弃object 和array
 
 /***/ })
 /******/ ]);
