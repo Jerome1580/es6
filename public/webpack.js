@@ -78,10 +78,13 @@
 // require('./5shuzhi-kuozhan.js')
 // require('./6array-kuozhan.js')
 // require('./7function-kuozhan.js')
-__webpack_require__(1);
+// require('./8Object-kuozhan.js')
 // require('./9Symbol.js')
 // require('./10数据结构.js')
 // require('./11数据结构对比.js')
+// require('./12Proxy-Reflect.js')
+// require('./13Class.js')
+__webpack_require__(1);
 // require('./index.css')
 
 /***/ }),
@@ -91,125 +94,139 @@ __webpack_require__(1);
 "use strict";
 
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-// 对象的扩展
-
 {
-    // 简介表示法
-
-    var o = 1;
-    var k = 2;
-
-    var es5 = {
-        o: o,
-        k: k
+    // 基本定义
+    var ajax = function ajax(callback) {
+        console.log('执行');
+        setTimeout(function () {
+            callback && callback.call();
+        }, 1000);
     };
 
-    var es6 = {
-        o: o,
-        k: k
-    };
-
-    var es5_method = {
-        hello: function hello() {
-            console.log('hello');
-        }
-    };
-
-    var es6_method = {
-        hello: function hello() {
-            console.log('hello');
-        },
-        world: function world() {
-            console.log('world');
-        }
-    };
-
-    console.log(es6_method.world());
+    ajax(function () {
+        console.log('timeout1');
+    });
 }
 
 {
-    //属性表达式
-    var a = 'b';
-    var es5_obj = {
-        'a': 'c',
-        'b': 'c'
+
+    var _ajax = function _ajax() {
+        console.log('执行2');
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve();
+            }, 1000);
+        });
     };
 
-    var es6_obj = _defineProperty({}, a, 'c');
-
-    console.log(es5_obj, es6_obj);
+    _ajax().then(function () {
+        console.log('promise', 'timeout2');
+    });
 }
 
 {
-    // 新增api  Object.is  相当于 ===
-    console.log('字符串', Object.is('abc', 'abc'), 'abc' === 'abc');
-    console.log('数组', Object.is([], []));
 
-    // console.log('拷贝', Object.assgin({ a: 'a' }, { b: 'b' }))
-    // 将{b:'b'}拷贝到{a:'a'}  变成{a:'a',b:'b'}
-    // 浅拷贝
-    // 不拷贝继承的属性
+    var _ajax2 = function _ajax2() {
+        console.log('执行3');
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve();
+            }, 1000);
+        });
+    };
 
+    _ajax2().then(function () {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve();
+            }, 2000);
+        });
+    }).then(function () {
+        console.log('timeout3');
+    });
+}
 
-    var test = { k: 123, o: 456 };
-
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-        for (var _iterator = Object.entries(test)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var _step$value = _slicedToArray(_step.value, 2),
-                key = _step$value[0],
-                value = _step$value[1];
-
-            console.log(key, value);
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
+// catch
+{
+    var _ajax3 = function _ajax3(num) {
+        console.log('执行4');
+        return new Promise(function (resolve, reject) {
+            if (num > 5) {
+                resolve();
+            } else {
+                throw Error('出错了');
             }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
+        });
+    };
 
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
+    _ajax3(6).then(function () {
+        console.log('log', 6);
+    }).catch(function (err) {
+        console.log('catch', err);
+    });
 
-    try {
-        for (var _iterator2 = test.entries()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var _step2$value = _slicedToArray(_step2.value, 2),
-                key = _step2$value[0],
-                value = _step2$value[1];
+    _ajax3(3).then(function () {
+        console.log('log', 3);
+    }).catch(function (err) {
+        console.log('catch', err);
+    });
+}
 
-            console.log(key, value);
-        }
-    } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                _iterator2.return();
-            }
-        } finally {
-            if (_didIteratorError2) {
-                throw _iteratorError2;
-            }
-        }
-    }
+{
+
+    // 所有图片加载完再添加到页面
+    var loadImg = function loadImg(src) {
+        return new Promise(function (resolve, reject) {
+            var img = document.createElement('img');
+            img.src = src;
+            img.onload = function () {
+                resolve(img);
+            };
+            img.onerror = function (err) {
+                reject(err);
+            };
+        });
+    };
+
+    var showImgs = function showImgs(imgs) {
+        imgs.forEach(function (img) {
+            document.body.appendChild(img);
+        });
+    };
+
+    // 都加载完成才会执行下一步，无论加载是好还是失败
+    // 都执行完了后，all的状态才会改变
+    // all是一个promise对象，里面都有3个promise对象
+
+
+    Promise.all([loadImg('https://img.alicdn.com/tfs/TB1Zb02SXXXXXblaXXXXXXXXXXX-200-402.jpg_100x1000q90.jpg'), loadImg('https://img.alicdn.com/tps/TB1G8HpOFXXXXb.apXXXXXXXXXX-360-280.jpg_180x180q90.jpg'), loadImg('https://img.alicdn.com/tfs/TB1t9v9RFXXXXaCXXXXXXXXXXXX-360-280.jpg_180x180q90.jpg')]).then(showImgs);
+}
+
+{
+    // 有一个图片添加完就添加到页面上
+    var _loadImg = function _loadImg(src) {
+        return new Promise(function (resolve, reject) {
+            var img = document.createElement('img');
+            img.src = src;
+            img.onload = function () {
+                resolve(img);
+            };
+            img.onerror = function (err) {
+                reject(err);
+            };
+        });
+    };
+
+    var _showImgs = function _showImgs(img) {
+        var p = document.createElement('p');
+        p.appendChild(img);
+        document.body.appendChild(p);
+    };
+
+    // 只要有一个加载完就可以
+
+
+    Promise.race([_loadImg('https://img.alicdn.com/tfs/TB1Zb02SXXXXXblaXXXXXXXXXXX-200-402.jpg_100x1000q90.jpg'), _loadImg('https://img.alicdn.com/tps/TB1G8HpOFXXXXb.apXXXXXXXXXX-360-280.jpg_180x180q90.jpg'), _loadImg('https://img.alicdn.com/tfs/TB1t9v9RFXXXXaCXXXXXXXXXXXX-360-280.jpg_180x180q90.jpg')]).then(_showImgs);
 }
 
 /***/ })

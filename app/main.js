@@ -9,5 +9,7 @@
 // require('./9Symbol.js')
 // require('./10数据结构.js')
 // require('./11数据结构对比.js')
-require('./12Proxy-Reflect.js')
+// require('./12Proxy-Reflect.js')
+// require('./13Class.js')
+require('./14Promise.js')
 // require('./index.css')
