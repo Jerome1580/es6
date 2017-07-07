@@ -1,4 +1,4 @@
-// require('./1work.js')
+// require('./1let.js')
 // require('./2jiegou.js')
 // require('./3RegExp-kuozhan.js')
 // require('./4String-kuozhan.js')
@@ -15,5 +15,5 @@
 // require('./15Iterator.js')
 // require('./16Generator.js')
 // require('./17Decorator.js')
-require('./18Moudle.js')
+// require('./18Moudle.js')
 // require('./index.css')
