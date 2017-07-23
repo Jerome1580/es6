@@ -4,7 +4,7 @@ var WebpackDevServer = require("webpack-dev-server");
 module.exports = {
     // __dirname 是nodejs里的一个全局变量，它指向的是我们项目的根目录
     // 入口文件的位置
-    entry: __dirname + '/app/main.js',
+    entry: __dirname + '/app/lesson/main.js',
     output: {
         // 打包后存放的路径
         path: __dirname + '/public',
